@@ -86,11 +86,10 @@ public class Main {
         double[][] wzgledny = new double[4][ilosc_probek];
         double[][] bezWzgledny = new double[4][ilosc_probek];
 
-//
+
         double[] probka=new double [ilosc_probek];
         for(int i = 0 ; i < ilosc_probek ; i++){
             probka[i]= (i/999999.0 *(max-1) + min );
-            System.out.println(i/999999.0 *(max-1) + min );
             bezWzgledny[0][i]=Math.abs(V1(probka[i], n) - Math.exp(probka[i]))*1E+15;
             bezWzgledny[1][i]=Math.abs(V2(probka[i], n) - Math.exp(probka[i]))*1E+15;
             bezWzgledny[2][i]=Math.abs(V3(probka[i], n) - Math.exp(probka[i]))*1E+15;
