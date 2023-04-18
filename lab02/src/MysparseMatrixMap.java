@@ -39,18 +39,6 @@ public class MysparseMatrixMap implements DataInterface{
             }
         }
 
-        public void addRowMultiple(int to, int from, double multiplier) {
-            for (int j = 0; j < columns; j++) {
-                double valueTo = getElement(to, j);
-                double valueFrom = getElement(from, j);
-                setElement(to, j, valueTo + multiplier * valueFrom);
-            }
-        }
-
-    @Override
-    public double[] solveEquations(double[] b) {
-        return new double[0];
-    }
 
     @Override
     public void swapRows(int maxIndex, int pivot) {
@@ -65,7 +53,6 @@ public class MysparseMatrixMap implements DataInterface{
         }
     }
 
-    // Metoda solveEquations zostałaby zaimplementowana w osobnej klasie.
 
 
 }
