@@ -42,17 +42,24 @@ public class MysparseMatrixMap implements DataInterface{
 
     @Override
     public void swapRows(int maxIndex, int pivot) {
-        if (maxIndex == pivot) return;
 
         for (int j = 0; j < this.columns; j++) {
             Pair<Integer, Integer> key1 = new Pair<>(maxIndex, j);
             Pair<Integer, Integer> key2 = new Pair<>(pivot, j);
-            double temp = this.elements.get(key2);
-            this.elements.put(key2, this.elements.get(key1));
-            this.elements.put(key1, temp);
+            if (this.elements.containsKey(key2) && this.elements.containsKey(key1)) {
+                double temp = this.elements.get(key2);
+                this.elements.put(key2, this.elements.get(key1));
+                this.elements.put(key1, temp);
+            } else if (this.elements.containsKey(key1) && !this.elements.containsKey(key2)) {
+                this.elements.put(key2, this.elements.get(key1));
+                this.elements.remove(key1);
+            } else if (this.elements.containsKey(key2) && !this.elements.containsKey(key1)) {
+                this.elements.put(key1, this.elements.get(key2));
+                this.elements.remove(key2);
+            }
+
         }
+
     }
-
-
 
 }
