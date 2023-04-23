@@ -6,13 +6,13 @@ public class GaussElimination {
     public static void main(String[] args) {
         // przykładowa macierz układu równań
 //        List a = new List(3,3);
-        MysparseMatrixMap a = new MysparseMatrixMap(3,3, new HashMap<>());
-        double[] value = new double[]{1, 2, -1 , 2, 1, -2, -3, 1, 1};
-        for(int i = 0; i<3; i++){
-            for(int j = 0 ; j<3; j++)
-                a.setElement(i,j,value[i*3+j]);
+        MysparseMatrixMap a = new MysparseMatrixMap(4,4, new HashMap<>());
+        double[] value = new double[]{2,1,1,1, -1,-2,-1,1, 1,1,-2,-3, 4,-2,0,4};
+        for(int i = 0; i< a.getRows(); i++){
+            for(int j = 0 ; j< a.getColumns(); j++)
+                a.setElement(i,j,value[i*4+j]);
         }
-        double[] b = {5, 1, -1};
+        double[] b = {0,1,2,2};
         double[] x = gaussElimination(a, b);
         System.out.println("Rozwiązanie: " + Arrays.toString(x));
     }
@@ -36,7 +36,6 @@ public class GaussElimination {
             double maxElem = Math.abs(a.getElement(i,i));
             int maxRow = i;
             for (int k = i + 1; k < n; k++) {
-                System.out.println((Math.abs(a.getElement(k,i))));
                 if (Math.abs(a.getElement(k,i)) > maxElem) {
                     maxElem = Math.abs(a.getElement(k,i));
 
@@ -49,6 +48,7 @@ public class GaussElimination {
             double temp2 = bCopy[maxRow];
             bCopy[maxRow] = bCopy[i];
             bCopy[i] = temp2;
+
             // eliminacja
             for (int k = i + 1; k < n; k++) {
                 double c = -a.getElement(k,i) / a.getElement(i,i);
@@ -63,19 +63,22 @@ public class GaussElimination {
             }
         }
         System.out.println("Matrix: ");
-        for(int i = 0; i<3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for(int i = 0; i<a.getRows(); i++) {
+            for (int j = 0; j <a.getColumns(); j++) {
                 System.out.print(a.getElement(i, j) + " ");
             }
             System.out.println(" ");
         }
+        System.out.println(" ");
+
         // wsteczna substytucja
         double[] x = new double[n];
         for (int i = n - 1; i >= 0; i--) {
             x[i] = bCopy[i] / a.getElement(i,i);
-            for (int k = i - 1; k >= 0; k--) {
-                bCopy[k] -= a.getElement(k,i) * x[i];
+            for (int k = i - 1; k > 0; k--) {
+                bCopy[k] = bCopy[k] - (a.getElement(k,i) * x[i]);
             }
+
         }
         return x;
     }
