@@ -43,8 +43,6 @@ public class List implements DataInterface{
     public void setElement(int row, int column, double value) {
         if (value != 0) {
             this.matrix[row][column] = value;
-        }else{
-            this.matrix[row][column]=Double.NaN;
         }
     }
 

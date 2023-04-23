@@ -5,8 +5,8 @@ public class GaussElimination {
 
     public static void main(String[] args) {
         // przykładowa macierz układu równań
-//        List a = new List(3,3);
-        MysparseMatrixMap a = new MysparseMatrixMap(4,4, new HashMap<>());
+        List a = new List(4,4);
+//        MysparseMatrixMap a = new MysparseMatrixMap(4,4, new HashMap<>());
         double[] value = new double[]{2,1,1,1, -1,-2,-1,1, 1,1,-2,-3, 4,-2,0,4};
         for(int i = 0; i< a.getRows(); i++){
             for(int j = 0 ; j< a.getColumns(); j++)
