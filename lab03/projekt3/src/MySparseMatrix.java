@@ -1,5 +1,4 @@
-
-public interface DataInterface {
+public interface MySparseMatrix {
         int getRows();
 
         int getColumns();
@@ -9,4 +8,8 @@ public interface DataInterface {
         void setElement(int row, int column, double value);
 
         void swapRows(int maxIndex, int pivot);
+
+        double[][] getMatrix();
+
+        void print();
 }
